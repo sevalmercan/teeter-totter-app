@@ -3,9 +3,9 @@
         <button @click="addObjectToArray"> CLİCK</button>
         <div ref="modal" class="game-board">
             <div v-for="item in objectArray" :key="item.id">
-                <div :key="item.id" class=" square" ref="square"
+                <component :key="item.id" :is="item.componentName" ref="square"
                     :style="{ top: item.topNumber + 'px', left: item.leftNumber + 'px' }">
-                </div>
+                </component>
             </div>
 
         </div>
@@ -14,31 +14,32 @@
   
 <script>
 import mixin from '../mixin';
-
+import SquareObject from "./square-object.vue"
+import TriangleObject from "./triangle-object.vue"
+import CircleObject from "./circle-object.vue"
 const MIDDLE_OF_THE_BOARD = 175
 const END_OF_THE_BOARD = 330
 
 export default {
     mixins: [mixin],
+    components: { SquareObject, TriangleObject, CircleObject },
     data() {
         return {
             objectArray: [],
+            componentNames: ["TriangleObject", "CircleObject", "SquareObject"],
+
         }
     },
     created() {
-
         // İnitialaze game
         this.addObjectToArray();
 
         const that = this;
         const timer = setInterval(function () {
             if (that.currentObject?.topNumber >= END_OF_THE_BOARD) {
-                console.log(that.objectArray)
                 that.addObjectToArray();
 
-
             } else if (that.objectArray?.length >= 1) {
-                console.log(that.currentObject?.topNumber)
                 that.moveDown()
             }
         }, 1000);
@@ -57,7 +58,16 @@ export default {
             this.currentObject.topNumber = this.currentObject.topNumber + 10;
         },
         addObjectToArray() {
-            this.objectArray.push({ id: this.numberOfObject, topNumber: 0, leftNumber: MIDDLE_OF_THE_BOARD })
+            const randomNumber = this.getRandomInt(0, 2)
+            console.log(randomNumber)
+
+            const currentComponent = this.componentNames[this.getRandomInt(0, 2)]
+            this.objectArray.push({ id: this.numberOfObject, topNumber: 0, leftNumber: MIDDLE_OF_THE_BOARD, componentName: currentComponent })
+        },
+        getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
         }
     },
     computed: {
@@ -67,27 +77,17 @@ export default {
         numberOfObject() {
             return this.objectArray.length
         },
+
     }
 }
 </script>
   
 <style>
 .game-board {
-
     border: 2px solid red;
     width: 350px;
     height: 342px;
     position: relative;
-}
-
-.square {
-    width: 15px;
-    height: 15px;
-    background-color: blue;
-    position: absolute;
-    left: calc(50% - 16px);
-
-
 }
 </style>
   
