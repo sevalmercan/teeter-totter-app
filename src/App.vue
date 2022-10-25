@@ -1,8 +1,13 @@
 <template>
   <div id="app">
+    <button @click="addObjectToArray"> CLİCK</button>
     <div ref="modal" class="game-board">
-      <div class=" square" ref="square" :style="{ top: topNumber + 'px', left: leftNumber + 'px' }">
+      <div v-for="item in objectArray" :key="item.id">
+        <div :key="item.id" class=" square" ref="square"
+          :style="{ top: item.topNumber + 'px', left: item.leftNumber + 'px' }">
+        </div>
       </div>
+
     </div>
   </div>
 </template>
@@ -17,13 +22,15 @@ export default {
     return {
       topNumber: 0,
       leftNumber: 175,
+      counter: 0,
+      objectArray: [],
     }
   },
   created() {
 
     const that = this;
     const timer = setInterval(function () {
-      if (that.topNumber >= 332) {
+      if (that.objectArray?.length > 0 && that.currentObject.topNumber >= 332) {
         clearInterval(timer);
       } else {
         that.moveDown()
@@ -33,15 +40,28 @@ export default {
   },
   methods: {
     moveLeft() {
-      this.leftNumber = this.leftNumber - 5;
+      this.currentObject.leftNumber = this.currentObject.leftNumber - 5;
     },
 
     moveRight() {
-      this.leftNumber = this.leftNumber + 5;
+      this.currentObject.leftNumber = this.currentObject.leftNumber + 5;
     },
     moveDown() {
-      this.topNumber = this.topNumber + 10;
+      if (this.objectArray.length >= 1) {
+        console.log()
+        this.currentObject.topNumber = this.currentObject.topNumber + 10;
+      }
+
     },
+    addObjectToArray() {
+      this.objectArray.push({ id: this.counter, topNumber: 0, leftNumber: 175 })
+      this.counter++
+    }
+  },
+  computed: {
+    currentObject() {
+      return this.objectArray[0]
+    }
   }
 } 
 </script>

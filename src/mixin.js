@@ -1,4 +1,7 @@
 export default {
+  data() {
+    return {};
+  },
   created() {
     let that = this;
     document.addEventListener("keyup", function (event) {
