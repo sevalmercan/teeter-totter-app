@@ -15,14 +15,13 @@
 <script>
 import mixin from '../mixin';
 
+const MIDDLE_OF_THE_BOARD = 175
+const END_OF_THE_BOARD = 332
+
 export default {
     mixins: [mixin],
-
     data() {
         return {
-            topNumber: 0,
-            leftNumber: 175,
-            counter: 0,
             objectArray: [],
         }
     },
@@ -30,9 +29,9 @@ export default {
 
         const that = this;
         const timer = setInterval(function () {
-            if (that.objectArray?.length > 0 && that.currentObject.topNumber >= 332) {
+            if (that.currentObject?.topNumber >= END_OF_THE_BOARD) {
                 clearInterval(timer);
-            } else {
+            } else if (that.objectArray?.length >= 1) {
                 that.moveDown()
             }
         }, 1000);
@@ -47,20 +46,19 @@ export default {
             this.currentObject.leftNumber = this.currentObject.leftNumber + 5;
         },
         moveDown() {
-            if (this.objectArray.length >= 1) {
-                console.log()
-                this.currentObject.topNumber = this.currentObject.topNumber + 10;
-            }
-
+            this.currentObject.topNumber = this.currentObject.topNumber + 10;
         },
         addObjectToArray() {
-            this.objectArray.push({ id: this.counter, topNumber: 0, leftNumber: 175 })
-            this.counter++
+            this.objectArray.push({ id: this.numberOfObject, topNumber: 0, leftNumber: MIDDLE_OF_THE_BOARD })
+
         }
     },
     computed: {
         currentObject() {
             return this.objectArray[0]
+        },
+        numberOfObject() {
+            return this.objectArray.length
         }
     }
 }
