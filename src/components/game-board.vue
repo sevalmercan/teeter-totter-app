@@ -3,7 +3,7 @@
         <button @click="addObjectToArray"> CLİCK</button>
         <div ref="modal" class="game-board">
             <div v-for="item in objectArray" :key="item.id">
-                <component :key="item.id" :is="item.componentName" ref="square"
+                <component :key="item.id" :is="item.componentName" v-bind="item.styleAttibutes"
                     :style="{ top: item.topNumber + 'px', left: item.leftNumber + 'px' }">
                 </component>
             </div>
@@ -26,7 +26,8 @@ export default {
     data() {
         return {
             objectArray: [],
-            componentNames: ["TriangleObject", "CircleObject", "SquareObject"],
+            componentNames: ["TriangleObject", "TriangleObject", "TriangleObject"],
+
 
         }
     },
@@ -35,7 +36,7 @@ export default {
         this.addObjectToArray();
 
         const that = this;
-        const timer = setInterval(function () {
+        setInterval(function () {
             if (that.currentObject?.topNumber >= END_OF_THE_BOARD) {
                 that.addObjectToArray();
 
@@ -47,22 +48,19 @@ export default {
     },
     methods: {
         moveLeft() {
-            this.currentObject.leftNumber = this.currentObject.leftNumber - 5;
+            this.currentObject.leftNumber -= 5;
         },
 
         moveRight() {
-            this.currentObject.leftNumber = this.currentObject.leftNumber + 5;
+            this.currentObject.leftNumber += 5;
         },
         moveDown() {
 
-            this.currentObject.topNumber = this.currentObject.topNumber + 10;
+            this.currentObject.topNumber += 10;
         },
         addObjectToArray() {
-            const randomNumber = this.getRandomInt(0, 2)
-            console.log(randomNumber)
-
             const currentComponent = this.componentNames[this.getRandomInt(0, 2)]
-            this.objectArray.push({ id: this.numberOfObject, topNumber: 0, leftNumber: MIDDLE_OF_THE_BOARD, componentName: currentComponent })
+            this.objectArray.push({ id: this.numberOfObject, topNumber: 0, leftNumber: MIDDLE_OF_THE_BOARD, componentName: currentComponent, styleAttibutes: { edgeSize: '15px' } })
         },
         getRandomInt(min, max) {
             min = Math.ceil(min);
