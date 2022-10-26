@@ -17,6 +17,12 @@ import mixin from '../mixin';
 import SquareObject from "./square-object.vue"
 import TriangleObject from "./triangle-object.vue"
 import CircleObject from "./circle-object.vue"
+
+const objectHeight = 33
+const gameboardHeight = 340
+const pathToGo = gameboardHeight - objectHeight
+const leftPath = pathToGo % 10
+const warning = pathToGo - leftPath
 const MIDDLE_OF_THE_BOARD = 175
 const END_OF_THE_BOARD = 330
 
@@ -26,7 +32,7 @@ export default {
     data() {
         return {
             objectArray: [],
-            componentNames: ["TriangleObject", "TriangleObject", "TriangleObject"],
+            componentNames: ["SquareObject", "CircleObject", "TriangleObject"],
 
 
         }
@@ -37,11 +43,15 @@ export default {
 
         const that = this;
         setInterval(function () {
-            if (that.currentObject?.topNumber >= END_OF_THE_BOARD) {
+            if (that.currentObject?.topNumber >= warning) {
+
+                that.moveDown(leftPath)
+                console.log("debnnem", that.currentObject?.topNumber)
                 that.addObjectToArray();
 
             } else if (that.objectArray?.length >= 1) {
-                that.moveDown()
+                console.log(that.currentObject?.topNumber)
+                that.moveDown(10)
             }
         }, 1000);
 
@@ -54,13 +64,13 @@ export default {
         moveRight() {
             this.currentObject.leftNumber += 5;
         },
-        moveDown() {
+        moveDown(number) {
 
-            this.currentObject.topNumber += 10;
+            this.currentObject.topNumber += number;
         },
         addObjectToArray() {
             const currentComponent = this.componentNames[this.getRandomInt(0, 2)]
-            this.objectArray.push({ id: this.numberOfObject, topNumber: 0, leftNumber: MIDDLE_OF_THE_BOARD, componentName: currentComponent, styleAttibutes: { edgeSize: '15px' } })
+            this.objectArray.push({ id: this.numberOfObject, topNumber: 0, leftNumber: MIDDLE_OF_THE_BOARD, componentName: currentComponent, styleAttibutes: { edgeSize: objectHeight + 'px' } })
         },
         getRandomInt(min, max) {
             min = Math.ceil(min);
@@ -84,7 +94,7 @@ export default {
 .game-board {
     border: 2px solid red;
     width: 350px;
-    height: 342px;
+    height: 340px;
     position: relative;
 }
 </style>

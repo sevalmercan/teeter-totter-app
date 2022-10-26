@@ -14,7 +14,7 @@ export default {
           that.moveRight();
           break;
         case "ArrowDown": //down arrow key
-          that.moveDown();
+          that.moveDown(10);
           break;
       }
     });

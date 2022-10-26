@@ -16,8 +16,8 @@ export default {
     left: calc(50% - 16px);
     width: 0;
     height: 0;
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-    border-bottom: 15px solid blue
+    border-left: 16.5px solid transparent;
+    border-right: 16.5px solid transparent;
+    border-bottom: 33px solid blue
 }
 </style>
