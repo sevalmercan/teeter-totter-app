@@ -1,6 +1,11 @@
 export default {
   data() {
-    return {};
+    return {
+      ObjectHeigth: 33,
+      pathToGo: Number,
+      leftPath: Number,
+      endOfTheBoard: Number,
+    };
   },
   created() {
     let that = this;

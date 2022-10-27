@@ -18,12 +18,10 @@ import SquareObject from "./square-object.vue"
 import TriangleObject from "./triangle-object.vue"
 import CircleObject from "./circle-object.vue"
 
-const OBJECT_HEİGTH = 34
 const GAME_BOARD_HEİGTH = 340
-const PATH_TO_GO = GAME_BOARD_HEİGTH - OBJECT_HEİGTH
-const LEFT_PATH = PATH_TO_GO % 10
-const END_OF_THE_BOARD = PATH_TO_GO - LEFT_PATH
 const MIDDLE_OF_THE_BOARD = 175
+
+
 
 
 export default {
@@ -33,8 +31,6 @@ export default {
         return {
             objectArray: [],
             componentNames: ["SquareObject", "CircleObject", "TriangleObject"],
-
-
         }
     },
     created() {
@@ -43,13 +39,12 @@ export default {
 
         const that = this;
         setInterval(function () {
-            if (that.currentObject?.topNumber >= END_OF_THE_BOARD) {
-                that.moveDown(LEFT_PATH)
-                console.log("debnnem", that.currentObject?.topNumber)
+
+            if (that.currentObject?.topNumber >= that.endOfTheBoard) {
+                that.moveDown(that.leftPath)
                 that.addObjectToArray();
 
             } else if (that.objectArray?.length >= 1) {
-                console.log(that.currentObject?.topNumber)
                 that.moveDown(10)
             }
         }, 1000);
@@ -68,8 +63,14 @@ export default {
             this.currentObject.topNumber += number;
         },
         addObjectToArray() {
+
+            this.pathToGo = GAME_BOARD_HEİGTH - this.ObjectHeigth
+            this.leftPath = this.pathToGo % 10
+            this.endOfTheBoard = this.pathToGo - this.leftPath
+            console.log("this.endOfTheBoard", this.endOfTheBoard)
+            console.log("this.leftPath", this.leftPath)
             const currentComponent = this.componentNames[this.getRandomInt(0, 2)]
-            this.objectArray.push({ id: this.numberOfObject, topNumber: 0, leftNumber: MIDDLE_OF_THE_BOARD, componentName: currentComponent, styleAttibutes: { edgeSize: OBJECT_HEİGTH + 'px' } })
+            this.objectArray.push({ id: this.numberOfObject, topNumber: 0, leftNumber: MIDDLE_OF_THE_BOARD, componentName: currentComponent, styleAttibutes: { edgeSize: this.ObjectHeigth + 'px' } })
         },
         getRandomInt(min, max) {
             min = Math.ceil(min);
