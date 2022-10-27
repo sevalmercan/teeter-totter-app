@@ -63,20 +63,17 @@ export default {
             this.currentObject.topNumber += number;
         },
         addObjectToArray() {
-
-            this.pathToGo = GAME_BOARD_HEİGTH - this.ObjectHeigth
-            this.leftPath = this.pathToGo % 10
-            this.endOfTheBoard = this.pathToGo - this.leftPath
-            console.log("this.endOfTheBoard", this.endOfTheBoard)
-            console.log("this.leftPath", this.leftPath)
+            this.calculateEndOfTheBoard()
             const currentComponent = this.componentNames[this.getRandomInt(0, 2)]
             this.objectArray.push({ id: this.numberOfObject, topNumber: 0, leftNumber: MIDDLE_OF_THE_BOARD, componentName: currentComponent, styleAttibutes: { edgeSize: this.ObjectHeigth + 'px' } })
         },
-        getRandomInt(min, max) {
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            return Math.floor(Math.random() * (max - min + 1)) + min;
+        calculateEndOfTheBoard() {
+            this.pathToGo = GAME_BOARD_HEİGTH - this.ObjectHeigth
+            this.leftPath = this.pathToGo % 10
+            this.endOfTheBoard = this.pathToGo - this.leftPath
+
         }
+
     },
     computed: {
         currentObject() {
