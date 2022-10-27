@@ -18,13 +18,13 @@ import SquareObject from "./square-object.vue"
 import TriangleObject from "./triangle-object.vue"
 import CircleObject from "./circle-object.vue"
 
-const objectHeight = 33
-const gameboardHeight = 340
-const pathToGo = gameboardHeight - objectHeight
-const leftPath = pathToGo % 10
-const warning = pathToGo - leftPath
+const OBJECT_HEİGTH = 34
+const GAME_BOARD_HEİGTH = 340
+const PATH_TO_GO = GAME_BOARD_HEİGTH - OBJECT_HEİGTH
+const LEFT_PATH = PATH_TO_GO % 10
+const END_OF_THE_BOARD = PATH_TO_GO - LEFT_PATH
 const MIDDLE_OF_THE_BOARD = 175
-const END_OF_THE_BOARD = 330
+
 
 export default {
     mixins: [mixin],
@@ -43,9 +43,8 @@ export default {
 
         const that = this;
         setInterval(function () {
-            if (that.currentObject?.topNumber >= warning) {
-
-                that.moveDown(leftPath)
+            if (that.currentObject?.topNumber >= END_OF_THE_BOARD) {
+                that.moveDown(LEFT_PATH)
                 console.log("debnnem", that.currentObject?.topNumber)
                 that.addObjectToArray();
 
@@ -70,7 +69,7 @@ export default {
         },
         addObjectToArray() {
             const currentComponent = this.componentNames[this.getRandomInt(0, 2)]
-            this.objectArray.push({ id: this.numberOfObject, topNumber: 0, leftNumber: MIDDLE_OF_THE_BOARD, componentName: currentComponent, styleAttibutes: { edgeSize: objectHeight + 'px' } })
+            this.objectArray.push({ id: this.numberOfObject, topNumber: 0, leftNumber: MIDDLE_OF_THE_BOARD, componentName: currentComponent, styleAttibutes: { edgeSize: OBJECT_HEİGTH + 'px' } })
         },
         getRandomInt(min, max) {
             min = Math.ceil(min);
