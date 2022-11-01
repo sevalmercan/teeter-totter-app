@@ -64,6 +64,7 @@ export default {
             this.objectArray.push({ id: this.numberOfObject, topNumber: 0, leftNumber: MIDDLE_OF_THE_BOARD, componentName: currentComponent, styleAttibutes: { edgeSize: this.ObjectHeigth + 'px' } })
         },
         calculateEndOfTheBoard() {
+            this.ObjectHeigth = this.getRandomInt(20, 40)
             this.pathToGo = GAME_BOARD_HEİGTH - this.ObjectHeigth
             this.leftPath = this.pathToGo % 10
             this.endOfTheBoard = this.pathToGo - this.leftPath
