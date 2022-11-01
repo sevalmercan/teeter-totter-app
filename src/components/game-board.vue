@@ -1,6 +1,5 @@
 <template>
     <div>
-        <button @click="addObjectToArray"> CLİCK</button>
         <div ref="modal" class="game-board">
             <div v-for="item in objectArray" :key="item.id">
                 <component :key="item.id" :is="item.componentName" v-bind="item.styleAttibutes"
@@ -20,9 +19,6 @@ import CircleObject from "./circle-object.vue"
 
 const GAME_BOARD_HEİGTH = 340
 const MIDDLE_OF_THE_BOARD = 175
-
-
-
 
 export default {
     mixins: [mixin],

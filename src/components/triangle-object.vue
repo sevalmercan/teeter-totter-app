@@ -1,6 +1,6 @@
 <template>
     <div class="triange" :style="{
-        borderBottom: edgeSize + ' solid blue', borderLeft: otherEdge + 'px solid transparent',
+        borderBottom: edgeSize + ' solid ' + color, borderLeft: otherEdge + 'px solid transparent',
         borderRight: otherEdge + 'px solid transparent'
     }">
     </div>
@@ -8,6 +8,8 @@
 
 
 <script>
+import { getRandomColor } from "../common/helper"
+
 export default {
     name: 'CircleObject',
     props: {
@@ -15,10 +17,12 @@ export default {
     },
     data() {
         return {
-            otherEdge: Number
+            otherEdge: Number,
+            color: ""
         }
     }, created() {
-        this.calculateOtherEdges()
+        this.calculateOtherEdges(),
+            this.color = getRandomColor()
     },
 
     methods: {
