@@ -39,4 +39,14 @@ export default {
       this.currentObject.topNumber += number;
     },
   },
+  computed: {
+    currentObject() {
+      return this.objectArray[
+        this.numberOfObject - 1
+      ];
+    },
+    numberOfObject() {
+      return this.objectArray.length;
+    },
+  },
 };

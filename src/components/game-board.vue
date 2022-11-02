@@ -51,12 +51,13 @@ export default {
     },
     methods: {
         addObjectToArray() {
-            const deneme = MIDDLE_OF_THE_BOARD - (this.objectHeigth / 2)
             this.calculateEndOfTheBoard()
+            const deneme = MIDDLE_OF_THE_BOARD - (this.objectHeigth / 2)
             const currentComponent = this.componentNames[(0, 2)]
             this.objectArray.push({
                 id: this.numberOfObject,
-                topNumber: 0, leftNumber: deneme,
+                topNumber: 0,
+                leftNumber: deneme,
                 componentName: currentComponent,
                 styleAttibutes: { edgeSize: this.objectHeigth + 'px' }
             })
@@ -74,18 +75,8 @@ export default {
             } if (position < MIDDLE_OF_THE_BOARD) {
                 this.leftPos += this.objectHeigth
             }
-        }
-
+        },
     },
-    computed: {
-        currentObject() {
-            return this.objectArray[this.numberOfObject - 1]
-        },
-        numberOfObject() {
-            return this.objectArray.length
-        },
-
-    }
 }
 </script>
   
