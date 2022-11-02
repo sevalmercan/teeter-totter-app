@@ -1,7 +1,7 @@
 <template>
     <div>
         {{ leftPos }} {{ rightPos }}
-        <div ref="modal" class="game-board">
+        <div ref="modal" class="game-board" :style="{ transform: 'rotate(' + degree + 'deg)' }">
             <div v-for="item in objectArray" :key="item.id">
                 <component :key="item.id" :is="item.componentName" v-bind="item.styleAttibutes"
                     :style="{ top: item.topNumber + 'px', left: item.leftNumber + 'px' }">
@@ -84,6 +84,18 @@ export default {
             }
         },
     },
+    computed: {
+
+        degree() {
+            if (this.rightPos > this.leftPos) {
+                return 5
+            }
+            else if (this.leftPos > this.rightPos) {
+                return -5
+            }
+            return 0
+        }
+    }
 }
 </script>
   
