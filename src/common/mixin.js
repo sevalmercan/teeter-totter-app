@@ -1,7 +1,7 @@
 export default {
   data() {
     return {
-      ObjectHeigth: Number,
+      objectHeigth: Number,
       pathToGo: Number,
       leftPath: Number,
       endOfTheBoard: Number,
@@ -28,14 +28,15 @@ export default {
     );
   },
   methods: {
-    getRandomInt(min, max) {
-      min = Math.ceil(min);
-      max = Math.floor(max);
-      return (
-        Math.floor(
-          Math.random() * (max - min + 1)
-        ) + min
-      );
+    moveLeft() {
+      this.currentObject.leftNumber -= 5;
+    },
+
+    moveRight() {
+      this.currentObject.leftNumber += 5;
+    },
+    moveDown(number) {
+      this.currentObject.topNumber += number;
     },
   },
 };
