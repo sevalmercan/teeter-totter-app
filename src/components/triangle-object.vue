@@ -3,6 +3,9 @@
         borderBottom: edgeSize + ' solid ' + color, borderLeft: otherEdge + 'px solid transparent',
         borderRight: otherEdge + 'px solid transparent'
     }">
+        <div class="mass">
+            {{ mass }}
+        </div>
     </div>
 </template>
 
@@ -18,11 +21,13 @@ export default {
     data() {
         return {
             otherEdge: Number,
-            color: ""
+            color: "",
+            mass: ""
         }
     }, created() {
-        this.calculateOtherEdges(),
-            this.color = getRandomColor()
+        this.calculateOtherEdges();
+        this.color = getRandomColor();
+        this.mass = this.edgeSize.replace("px", "")
     },
 
     methods: {
@@ -34,13 +39,17 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .triange {
     position: absolute;
     left: calc(50% - 16px);
     width: 0;
     height: 0;
 
-
+    .mass {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 50%);
+    }
 }
 </style>

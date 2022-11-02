@@ -63,7 +63,8 @@ export default {
             })
         },
         calculateEndOfTheBoard() {
-            this.objectHeigth = getRandomInt(20, 40)
+            const objectHeightRange = [20, 25, 30, 35, 40, 45, 50]
+            this.objectHeigth = objectHeightRange[getRandomInt(0, 6)]
             this.pathToGo = GAME_BOARD_HEİGTH - this.objectHeigth
             this.leftPath = this.pathToGo % 10
             this.endOfTheBoard = this.pathToGo - this.leftPath

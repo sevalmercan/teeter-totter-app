@@ -3,6 +3,10 @@
         width: edgeSize, height: edgeSize,
         backgroundColor: color
     }">
+        <div class="mass">
+            {{ mass }}
+        </div>
+
     </div>
 </template>
 
@@ -15,20 +19,28 @@ export default {
     },
     data() {
         return {
-            color: ""
+            color: "",
+            mass: ""
         }
     },
     created() {
         this.color = getRandomColor()
+        this.mass = this.edgeSize.replace("px", "")
     }
 }
 </script>
 
-<style>
+<style lang="scss">
 .circle {
     background-color: blue;
     position: absolute;
     left: calc(50% - 16px);
     border-radius: 50%;
+
+    .mass {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 50%);
+    }
 }
 </style>
