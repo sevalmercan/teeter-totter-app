@@ -18,8 +18,7 @@ import SquareObject from "./square-object.vue"
 import TriangleObject from "./triangle-object.vue"
 import CircleObject from "./circle-object.vue"
 import { getRandomInt } from "../common/helper"
-const GAME_BOARD_HEİGTH = 340
-const MIDDLE_OF_THE_BOARD = 175
+import { GAME_BOARD_HEİGTH, MIDDLE_OF_THE_BOARD } from "../common/constants"
 
 export default {
     mixins: [mixin],
@@ -51,12 +50,16 @@ export default {
 
     },
     methods: {
-
         addObjectToArray() {
             const deneme = MIDDLE_OF_THE_BOARD - (this.objectHeigth / 2)
             this.calculateEndOfTheBoard()
             const currentComponent = this.componentNames[(0, 2)]
-            this.objectArray.push({ id: this.numberOfObject, topNumber: 0, leftNumber: deneme, componentName: currentComponent, styleAttibutes: { edgeSize: this.objectHeigth + 'px' } })
+            this.objectArray.push({
+                id: this.numberOfObject,
+                topNumber: 0, leftNumber: deneme,
+                componentName: currentComponent,
+                styleAttibutes: { edgeSize: this.objectHeigth + 'px' }
+            })
         },
         calculateEndOfTheBoard() {
             this.objectHeigth = getRandomInt(20, 40)
