@@ -6,8 +6,13 @@
                 <component :key="item.id" :is="item.componentName" v-bind="item.styleAttibutes"
                     :style="{ top: item.topNumber + 'px', left: item.leftNumber + 'px' }">
                 </component>
-            </div>
 
+            </div>
+            <div class="line-container">
+                <div class="vertical-line" v-for="index in 22" :key="index">
+
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -82,12 +87,26 @@ export default {
 }
 </script>
   
-<style>
+<style lang="scss">
 .game-board {
     border: 2px solid red;
     width: 350px;
     height: 340px;
     position: relative;
+
+    .line-container {
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        bottom: -6px;
+
+        .vertical-line {
+            border-left: 6px solid black;
+            height: 5px;
+            margin-right: 10px;
+        }
+    }
+
 }
 </style>
   

@@ -29,11 +29,11 @@ export default {
   },
   methods: {
     moveLeft() {
-      this.currentObject.leftNumber -= 5;
+      this.currentObject.leftNumber -= 10;
     },
 
     moveRight() {
-      this.currentObject.leftNumber += 5;
+      this.currentObject.leftNumber += 10;
     },
     moveDown(number) {
       this.currentObject.topNumber += number;
