@@ -77,11 +77,10 @@ export default {
         calculateLeftAndRightPos() {
             const position = this.currentObject.leftNumber + (this.objectHeigth / 2)
             if (position > MIDDLE_OF_THE_BOARD) {
-                this.rightPos +=
-                    this.objectHeigth * (this.currentObject.leftNumber - MIDDLE_OF_THE_BOARD)
+                this.rightPos += this.objectHeigth * (position - MIDDLE_OF_THE_BOARD)
 
             } if (position < MIDDLE_OF_THE_BOARD) {
-                this.leftPos += this.objectHeigth * (MIDDLE_OF_THE_BOARD - this.currentObject.leftNumber)
+                this.leftPos += this.objectHeigth * (MIDDLE_OF_THE_BOARD - position)
             }
         },
     },
@@ -102,7 +101,7 @@ export default {
   
 <style lang="scss">
 .game-board {
-    border: 2px solid red;
+    outline: 2px solid red;
     width: 350px;
     height: 340px;
     position: relative;
