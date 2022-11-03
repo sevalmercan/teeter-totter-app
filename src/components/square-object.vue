@@ -24,7 +24,7 @@ export default {
     },
     created() {
         this.color = getRandomColor()
-        this.mass = this.edgeSize.replace("px", "")
+        this.mass = this.edgeSize.replace("0px", "")
     }
 }
 </script>
@@ -40,6 +40,7 @@ export default {
         position: absolute;
         left: 50%;
         transform: translate(-50%, 50%);
+        color: white;
     }
 
 }

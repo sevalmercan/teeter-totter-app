@@ -9,7 +9,7 @@
 
             </div>
             <div class="line-container">
-                <div class="vertical-line" v-for="index in 22" :key="index">
+                <div class="vertical-line" v-for="index in 18" :key="index">
 
                 </div>
             </div>
@@ -112,11 +112,12 @@ export default {
         flex-direction: row;
         position: absolute;
         bottom: -6px;
+        left: -2px;
 
         .vertical-line {
-            border-left: 6px solid black;
+            border-left: 1px solid black;
             height: 5px;
-            margin-right: 10px;
+            margin-right: 20px;
         }
     }
 
