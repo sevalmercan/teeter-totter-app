@@ -68,8 +68,8 @@ export default {
             })
         },
         calculateEndOfTheBoard() {
-            const objectHeightRange = [20, 25, 30, 35, 40, 45, 50]
-            this.objectHeigth = objectHeightRange[getRandomInt(0, 6)]
+            const objectHeightRange = [20, 30, 40, 50, 60]
+            this.objectHeigth = objectHeightRange[getRandomInt(0, 4)]
             this.pathToGo = GAME_BOARD_HEİGTH - this.objectHeigth
             this.leftPath = this.pathToGo % 10
             this.endOfTheBoard = this.pathToGo - this.leftPath
@@ -77,7 +77,8 @@ export default {
         calculateLeftAndRightPos() {
             const position = this.currentObject.leftNumber + (this.objectHeigth / 2)
             if (position > MIDDLE_OF_THE_BOARD) {
-                this.rightPos += this.objectHeigth * (this.currentObject.leftNumber + MIDDLE_OF_THE_BOARD)
+                this.rightPos +=
+                    this.objectHeigth * (this.currentObject.leftNumber - MIDDLE_OF_THE_BOARD)
 
             } if (position < MIDDLE_OF_THE_BOARD) {
                 this.leftPos += this.objectHeigth * (MIDDLE_OF_THE_BOARD - this.currentObject.leftNumber)
