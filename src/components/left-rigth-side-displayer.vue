@@ -1,6 +1,6 @@
 <template>
     <div :class="['left-rigth-flag ' + side]" v-if="isShown">
-        {{ text }}
+        TORK İS ON THE {{ text }}
     </div>
 </template>
 

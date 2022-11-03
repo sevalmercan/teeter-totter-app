@@ -1,3 +1,5 @@
+import { MIDDLE_OF_THE_BOARD } from "./constants";
+
 export default {
   data() {
     return {
@@ -47,6 +49,46 @@ export default {
     },
     numberOfObject() {
       return this.objectArray.length;
+    },
+    degree() {
+      if (this.rightPos > this.leftPos) {
+        return 5;
+      } else if (this.leftPos > this.rightPos) {
+        return -5;
+      }
+      return 0;
+    },
+    objectCurrentPosition() {
+      return (
+        this.currentObject.leftNumber +
+        this.objectHeigth / 2
+      );
+    },
+    rightTorque() {
+      return (
+        this.objectHeigth *
+        (this.objectCurrentPosition -
+          MIDDLE_OF_THE_BOARD)
+      );
+    },
+    leftTorque() {
+      return (
+        this.objectHeigth *
+        (MIDDLE_OF_THE_BOARD -
+          this.objectCurrentPosition)
+      );
+    },
+    isObjectOnTheRightSide() {
+      return (
+        this.objectCurrentPosition >
+        MIDDLE_OF_THE_BOARD
+      );
+    },
+    isObjectOnTheLeftSide() {
+      return (
+        this.objectCurrentPosition <
+        MIDDLE_OF_THE_BOARD
+      );
     },
   },
 };
