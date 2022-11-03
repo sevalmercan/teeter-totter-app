@@ -73,10 +73,10 @@ export default {
             this.endOfTheBoard = this.pathToGo - this.leftPath
         },
         calculateLeftAndRightPos() {
-            if (this.objectCurrentPosition > MIDDLE_OF_THE_BOARD) {
+            if (this.isObjectOnTheRightSide) {
                 this.rightPos += this.rightTorque
 
-            } if (this.objectCurrentPosition < MIDDLE_OF_THE_BOARD) {
+            } if (this.isObjectOnTheLeftSide) {
                 this.leftPos += this.leftTorque
             }
         },
@@ -100,6 +100,12 @@ export default {
         },
         leftTorque() {
             return this.objectHeigth * (MIDDLE_OF_THE_BOARD - this.objectCurrentPosition)
+        },
+        isObjectOnTheRightSide() {
+            return this.objectCurrentPosition > MIDDLE_OF_THE_BOARD
+        },
+        isObjectOnTheLeftSide() {
+            return this.objectCurrentPosition < MIDDLE_OF_THE_BOARD
         }
     }
 }
