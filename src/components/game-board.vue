@@ -1,16 +1,14 @@
 <template>
     <div>
-        {{ leftPos }} {{ rightPos }}
+        <tork-displayer :rightPos="rightPos" :leftPos="leftPos" />
         <div ref="modal" class="game-board" :style="{ transform: 'rotate(' + degree + 'deg)' }">
             <div v-for="item in objectArray" :key="item.id">
                 <component :key="item.id" :is="item.componentName" v-bind="item.styleAttibutes"
                     :style="{ top: item.topNumber + 'px', left: item.leftNumber + 'px' }">
                 </component>
-
             </div>
             <div class="line-container">
                 <div class="vertical-line" v-for="index in 18" :key="index">
-
                 </div>
             </div>
         </div>
@@ -22,12 +20,13 @@ import mixin from '../common/mixin';
 import SquareObject from "./square-object.vue"
 import TriangleObject from "./triangle-object.vue"
 import CircleObject from "./circle-object.vue"
+import TorkDisplayer from './tork-displayer.vue';
 import { getRandomInt } from "../common/helper"
 import { GAME_BOARD_HEİGTH, MIDDLE_OF_THE_BOARD } from "../common/constants"
 
 export default {
     mixins: [mixin],
-    components: { SquareObject, TriangleObject, CircleObject },
+    components: { SquareObject, TriangleObject, CircleObject, TorkDisplayer },
     data() {
         return {
             objectArray: [],
