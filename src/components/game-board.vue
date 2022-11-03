@@ -22,7 +22,7 @@ import TriangleObject from "./triangle-object.vue"
 import CircleObject from "./circle-object.vue"
 import TorkDisplayer from './tork-displayer.vue';
 import { getRandomInt } from "../common/helper"
-import { GAME_BOARD_HEİGTH, MIDDLE_OF_THE_BOARD } from "../common/constants"
+import { GAME_BOARD_HEİGTH, MIDDLE_OF_THE_BOARD, objectHeigthRange } from "../common/constants"
 
 export default {
     mixins: [mixin],
@@ -67,19 +67,17 @@ export default {
             })
         },
         calculateEndOfTheBoard() {
-            const objectHeightRange = [20, 30, 40, 50, 60]
-            this.objectHeigth = objectHeightRange[getRandomInt(0, 4)]
+            this.objectHeigth = objectHeigthRange[getRandomInt(0, objectHeigthRange.length - 1)]
             this.pathToGo = GAME_BOARD_HEİGTH - this.objectHeigth
             this.leftPath = this.pathToGo % 10
             this.endOfTheBoard = this.pathToGo - this.leftPath
         },
         calculateLeftAndRightPos() {
-            const position = this.currentObject.leftNumber + (this.objectHeigth / 2)
-            if (position > MIDDLE_OF_THE_BOARD) {
-                this.rightPos += this.objectHeigth * (position - MIDDLE_OF_THE_BOARD)
+            if (this.objectCurrentPosition > MIDDLE_OF_THE_BOARD) {
+                this.rightPos += this.rightTorque
 
-            } if (position < MIDDLE_OF_THE_BOARD) {
-                this.leftPos += this.objectHeigth * (MIDDLE_OF_THE_BOARD - position)
+            } if (this.objectCurrentPosition < MIDDLE_OF_THE_BOARD) {
+                this.leftPos += this.leftTorque
             }
         },
     },
@@ -93,6 +91,15 @@ export default {
                 return -5
             }
             return 0
+        },
+        objectCurrentPosition() {
+            return this.currentObject.leftNumber + (this.objectHeigth / 2)
+        },
+        rightTorque() {
+            return this.objectHeigth * (this.objectCurrentPosition - MIDDLE_OF_THE_BOARD)
+        },
+        leftTorque() {
+            return this.objectHeigth * (MIDDLE_OF_THE_BOARD - this.objectCurrentPosition)
         }
     }
 }

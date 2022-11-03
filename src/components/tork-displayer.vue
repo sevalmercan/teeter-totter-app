@@ -22,5 +22,6 @@ export default {
     justify-content: space-between;
     color: black;
     font-size: 30px;
+    margin-bottom: 50px;
 }
 </style>
