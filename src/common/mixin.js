@@ -3,7 +3,6 @@ import { store } from "./store";
 export default {
   data() {
     return {
-      objectHeigth: "",
       pathToGo: "",
       leftPath: "",
       endOfTheBoard: "",
@@ -94,6 +93,14 @@ export default {
         this.objectCurrentPosition <
         MIDDLE_OF_THE_BOARD
       );
+    },
+    objectHeigth: {
+      get() {
+        return store.objectHeigth;
+      },
+      set(val) {
+        store.objectHeigth = val;
+      },
     },
   },
 };
