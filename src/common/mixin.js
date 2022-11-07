@@ -1,5 +1,5 @@
 import { MIDDLE_OF_THE_BOARD } from "./constants";
-
+import { store } from "./store";
 export default {
   data() {
     return {
@@ -42,13 +42,17 @@ export default {
     },
   },
   computed: {
+    objectArray() {
+      return store.objectArray;
+    },
     currentObject() {
-      return this.objectArray[
+      return store.objectArray[
         this.numberOfObject - 1
       ];
     },
+
     numberOfObject() {
-      return this.objectArray.length;
+      return store.objectArray.length;
     },
     degree() {
       if (this.rightPos > this.leftPos) {

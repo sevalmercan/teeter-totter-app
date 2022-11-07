@@ -34,7 +34,6 @@ export default {
     components: { SquareObject, TriangleObject, CircleObject, TorkDisplayer, leftRigthSideDisplayer },
     data() {
         return {
-            objectArray: [],
             componentNames: ["SquareObject", "CircleObject", "TriangleObject"],
             leftPos: 0,
             rightPos: 0

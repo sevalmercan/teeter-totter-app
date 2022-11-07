@@ -1,14 +1,16 @@
 <template>
   <div id="app">
-    <game-board />
+    <game-container />
   </div>
 </template>
 
 <script>
-import GameBoard from "./components/game-board.vue"
+import GameContainer from './containers/game-container.vue';
+import mixin from './common/mixin';
 export default {
   name: 'App',
-  components: { GameBoard }
+  components: { GameContainer },
+  mixins: [mixin]
 }
 
 </script>
