@@ -1,4 +1,5 @@
-# app
+# Teeter-Tooter App Preview
+![](https://media.giphy.com/media/CggVlheZI3SrWJTp4I/giphy.gif)
 
 ## Project setup
 ```
