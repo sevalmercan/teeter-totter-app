@@ -6,11 +6,9 @@
 
 <script>
 import GameContainer from './containers/game-container.vue';
-import mixin from './common/mixin';
 export default {
   name: 'App',
   components: { GameContainer },
-  mixins: [mixin]
 }
 
 </script>

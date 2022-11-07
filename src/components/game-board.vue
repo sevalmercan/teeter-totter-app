@@ -1,22 +1,19 @@
 <template>
-    <div class="game-container">
-        <left-rigth-side-displayer text="LEFT SİDE" side="right" :isShown="isObjectOnTheLeftSide" />
-        <div>
-            <tork-displayer :rightPos="rightPos" :leftPos="leftPos" />
-            <div ref="modal" class="game-board" :style="{ transform: 'rotate(' + degree + 'deg)' }">
-                <div v-for="item in objectArray" :key="item.id">
-                    <component :key="item.id" :is="item.componentName" v-bind="item.styleAttibutes"
-                        :style="{ top: item.topNumber + 'px', left: item.leftNumber + 'px' }">
-                    </component>
-                </div>
-                <div class="line-container">
-                    <div class="vertical-line" v-for="index in 18" :key="index">
-                    </div>
+    <div>
+        <tork-displayer :rightPos="rightPos" :leftPos="leftPos" />
+        <div ref="modal" class="game-board" :style="{ transform: 'rotate(' + degree + 'deg)' }">
+            <div v-for="item in objectArray" :key="item.id">
+                <component :key="item.id" :is="item.componentName" v-bind="item.styleAttibutes"
+                    :style="{ top: item.topNumber + 'px', left: item.leftNumber + 'px' }">
+                </component>
+            </div>
+            <div class="line-container">
+                <div class="vertical-line" v-for="index in 18" :key="index">
                 </div>
             </div>
         </div>
-        <left-rigth-side-displayer text="RİGTH SİDE" side="left" :isShown="isObjectOnTheRightSide" />
     </div>
+
 </template>
   
 <script>
@@ -28,7 +25,6 @@ import TorkDisplayer from './tork-displayer.vue';
 import leftRigthSideDisplayer from './left-rigth-side-displayer.vue';
 import { getRandomInt } from "../common/helper"
 import { GAME_BOARD_HEİGTH, MIDDLE_OF_THE_BOARD, objectHeigthRange } from "../common/constants"
-
 export default {
     mixins: [mixin],
     components: { SquareObject, TriangleObject, CircleObject, TorkDisplayer, leftRigthSideDisplayer },
@@ -89,31 +85,26 @@ export default {
 </script>
   
 <style lang="scss">
-.game-container {
-    display: flex;
-    flex-direction: row;
+.game-board {
+    outline: 2px solid red;
+    width: 350px;
+    height: 340px;
+    position: relative;
 
-    .game-board {
-        outline: 2px solid red;
-        width: 350px;
-        height: 340px;
-        position: relative;
+    .line-container {
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        bottom: -6px;
+        left: -2px;
 
-        .line-container {
-            display: flex;
-            flex-direction: row;
-            position: absolute;
-            bottom: -6px;
-            left: -2px;
-
-            .vertical-line {
-                border-left: 1px solid black;
-                height: 5px;
-                margin-right: 20px;
-            }
+        .vertical-line {
+            border-left: 1px solid black;
+            height: 5px;
+            margin-right: 20px;
         }
-
     }
+
 }
 </style>
   

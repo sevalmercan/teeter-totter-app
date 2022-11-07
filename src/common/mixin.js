@@ -3,10 +3,10 @@ import { store } from "./store";
 export default {
   data() {
     return {
-      objectHeigth: Number,
-      pathToGo: Number,
-      leftPath: Number,
-      endOfTheBoard: Number,
+      objectHeigth: "",
+      pathToGo: "",
+      leftPath: "",
+      endOfTheBoard: "",
     };
   },
   created() {
@@ -45,15 +45,16 @@ export default {
     objectArray() {
       return store.objectArray;
     },
+
+    numberOfObject() {
+      return this.objectArray.length;
+    },
     currentObject() {
-      return store.objectArray[
+      return this.objectArray[
         this.numberOfObject - 1
       ];
     },
 
-    numberOfObject() {
-      return store.objectArray.length;
-    },
     degree() {
       if (this.rightPos > this.leftPos) {
         return 5;
@@ -64,7 +65,7 @@ export default {
     },
     objectCurrentPosition() {
       return (
-        this.currentObject.leftNumber +
+        this.currentObject?.leftNumber +
         this.objectHeigth / 2
       );
     },
